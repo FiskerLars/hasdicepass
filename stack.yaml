@@ -1,0 +1,7 @@
+flags: {}
+extra-package-dbs: []
+packages:
+- '.'
+extra-deps:
+- hood-0.2.1
+resolver: lts-3.14
