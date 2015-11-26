@@ -54,3 +54,9 @@ rather complex due to error handling. If a word is not found the error
 will provide you with the exact location where your list is lacking a
 word.
 
+### Wordlist Parsing
+
+If you take a closer look at the Wordlist parser, you'll find that there
+are two versions. After fiddling with generating generic parser DSL and
+some (yet unknown) problem with the parsing of sequences, I went for a
+very simplistic parser. 
