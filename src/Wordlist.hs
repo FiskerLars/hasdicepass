@@ -71,6 +71,19 @@ parseWordLine' l = do
 
 
 
+
+
+{- | ## Deprecated Parser
+
+This seems to be derived from
+Graham Hutton and Erik Meijer: Functional Pearls — Monadic Parsing in Haskell
+Reference here: http://www.haskellforall.com/2014/03/introductions-to-advanced-haskell-topics.html
+(but I forgot where I actually got it from)
+
+I haven't found (and not searched exhaustingly) for the point where psequence runs into infinite recursion, but something of that kind probably is exhausting my process stack here. As I didn't want to fiddle around much longer, I left it be and build a faster, less beautiful parser.
+
+| -}
+
 parseWordLine:: String -> Maybe Wordline
 parseWordLine l = case ( (psequence pInt) # (pSpace -# pWord) ) l of
                    Nothing     -> Nothing
