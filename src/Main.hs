@@ -33,9 +33,8 @@ diceword wt = randomFindWord [] wt
                                                   (Right tree) -> Right tree
  
   
-printDicewords:: Wordtree -> Int -> IO ()
-printDicewords wordtree num = sequence (take num $ repeat $ diceword wordtree)
-                              >>= putStrLn.show
+dicewordArray:: Wordtree -> Int -> IO [String]
+dicewordArray wordtree num = sequence (take num $ repeat $ diceword wordtree)
 
 
 ------------- CLI ----------------
@@ -67,7 +66,9 @@ main = -- runO $
           wordtree <- readFile (head nonOpts) >>= return.parseWordtree
           case wordtree of
            (Just wt) -> do
-             printDicewords wt (numGenerated opts)
+            dicewordArray wt (numGenerated opts) 
+                         >>= (\dwa -> (putStrLn.show) dwa >> (return dwa))
+                         >>= putStrLn.concat
            Nothing -> error "Corrupt Wordtree"
           --putStrLn $ show $ numGenerated $ foldl (flip id) defaultOptions opts 
 
